@@ -3,9 +3,12 @@ package med.voll.api.controller;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import med.voll.api.medico.DadosCadastroMedico;
+import med.voll.api.medico.DadosListagemMedico;
 import med.voll.api.medico.Medico;
 import med.voll.api.medico.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +27,16 @@ public class MedicoController {
     }
 
     @GetMapping
-    public List<Medico> listar() {
-        return repository.findAll();
+    public Page<DadosListagemMedico> listar(Pageable paginacao) {
+        return repository.findAll(paginacao).map(DadosListagemMedico::new); //Converte uma lista de médicos para uma lista de DadosListagemMedico
     }
+
+    /*
+    * Para controlar quantos registros vem por página, na url após o localhost:8080/medicos, se passa os seguintes parametros:
+    * ?size=1 -> Para controlar quantas páginas irão vir
+    * Após o ?size=1 pode se passar o page que apresenta a página atual que inicia no 0.
+    * Se quiser mostrar a 10 registros e apresentar a segunda página a URL é esta:
+    * "localhost:8080/medicos?size=10&page=1"
+    */
 
 }
