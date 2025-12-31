@@ -1,4 +1,4 @@
-package med.voll.api.infra;
+package med.voll.api.infra.exception;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +22,7 @@ public class TratadorDeErros {
     }
 
     // Apresenta os campos que serão retornados no JSON de erro
-    private record DadosErroValidacao(String campo, String mensagem){
+    private record DadosErroValidacao(String campo, String mensagem) {
         public DadosErroValidacao(FieldError erro) {
             this(erro.getField(), erro.getDefaultMessage());
         }
