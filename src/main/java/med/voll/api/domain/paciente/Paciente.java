@@ -1,4 +1,4 @@
-package med.voll.api.domain.medico;
+package med.voll.api.domain.paciente;
 
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
@@ -11,13 +11,13 @@ import org.hibernate.annotations.UuidGenerator;
 
 import java.util.UUID;
 
-@Table(name = "medicos")
-@Entity(name = "Medico")
+@Table(name = "pacientes")
+@Entity(name = "Paciente")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Medico {
+public class Paciente {
 
     @Id
     @GeneratedValue
@@ -26,27 +26,22 @@ public class Medico {
     private String nome;
     private String email;
     private String telefone;
-    private String crm;
-
-    @Enumerated(EnumType.STRING)
-    private Especialidade especialidade;
+    private String cpf;
 
     @Embedded
     private Endereco endereco;
 
     private Boolean ativo;
 
-    public Medico(DadosCadastroMedico dados) {
+    public Paciente(DadosCadastroPaciente dados) {
         this.nome = dados.nome();
         this.email = dados.email();
-        this.crm = dados.crm();
         this.telefone = dados.telefone();
-        this.especialidade = dados.especialidade();
+        this.cpf = dados.cpf();
         this.endereco = new Endereco(dados.endereco());
         this.ativo = true;
     }
-
-    public void atualizarInformacoes(@Valid DadosAtualizacaoMedico dados) {
+    public void atualizarInformacoes(@Valid DadosAtualizacaoPaciente dados) {
         if (dados.nome() != null) {
             this.nome = dados.nome();
         }
@@ -58,7 +53,5 @@ public class Medico {
         }
     }
 
-    public void excluir() {
-        this.ativo = false;
-    }
+    public void excluir() { this.ativo = false; }
 }
