@@ -1,9 +1,7 @@
 package med.voll.api.domain.medico;
 
-import java.util.UUID;
-
 public record DadosListagemMedico(
-        UUID id,
+        Long id,
         String nome,
         String email,
         String crm,

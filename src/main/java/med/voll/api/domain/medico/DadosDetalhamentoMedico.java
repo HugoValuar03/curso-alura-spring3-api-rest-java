@@ -2,10 +2,8 @@ package med.voll.api.domain.medico;
 
 import med.voll.api.domain.endereco.Endereco;
 
-import java.util.UUID;
-
 public record DadosDetalhamentoMedico(
-        UUID id,
+        Long id,
         String nome,
         String email,
         String crm,

@@ -7,9 +7,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.domain.endereco.Endereco;
-import org.hibernate.annotations.UuidGenerator;
-
-import java.util.UUID;
 
 @Table(name = "medicos")
 @Entity(name = "Medico")
@@ -20,9 +17,8 @@ import java.util.UUID;
 public class Medico {
 
     @Id
-    @GeneratedValue
-    @UuidGenerator
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String nome;
     private String email;
     private String telefone;
