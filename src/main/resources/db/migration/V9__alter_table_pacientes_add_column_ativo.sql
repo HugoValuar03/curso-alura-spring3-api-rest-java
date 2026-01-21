@@ -1,1 +1,0 @@
-alter table pacientes add ativo tinyint default(1) not null;

@@ -1,1 +1,0 @@
-ALTER TABLE pacientes MODIFY id BIGINT NOT NULL;
